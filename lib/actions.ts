@@ -1,10 +1,20 @@
 import { ProjectForm } from "@/common.types";
-import { createProjectMutation, createUserMutation, deleteProjectMutation, getProjectByIdQuery, getProjectsOfUserQuery, getUserQuery, projectsQuery, updateProjectMutation } from "@/graphql";
+import { 
+    createProjectMutation, 
+    createUserMutation, 
+    deleteProjectMutation, 
+    getProjectByIdQuery, 
+    getProjectsOfUserQuery, 
+    getUserQuery, 
+    projectsQuery, 
+    updateProjectMutation,
+    fetcjAllProjects
+} from "@/graphql";
 import { GraphQLClient } from "graphql-request";
 
 const isProduction = process.env.NODE_ENV === "production";
-const apiUrl = 'https://new-repo-main-kgithub-yandexru.grafbase.app/graphql';
-const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTA3Mzc3OTEsImlzcyI6ImdyYWZiYXNlIiwiYXVkIjoiMDFINktYNk00TjgwSDVFM0tKUU5HV1hHRjQiLCJqdGkiOiIwMUg2S1g2TUVTUUNBM1c5RkgwWkVKSFZBWCIsImVudiI6InByb2R1Y3Rpb24iLCJwdXJwb3NlIjoicHJvamVjdC1hcGkta2V5In0.x7hC7miCwhrpxEGuQUjZwto2XG93yRdeQMqdwKdCXDc';
+const apiUrl = 'https://clone-graf-main-kgithub-yandexru.grafbase.app/graphql';
+const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTA3NDQ1NDUsImlzcyI6ImdyYWZiYXNlIiwiYXVkIjoiMDFINk0zTVI2MEtBS0ZXUVhBUzFYSk44OVAiLCJqdGkiOiIwMUg2TTNNUkM4UzI3UU4zRjlEV04wNjQ2RyIsImVudiI6InByb2R1Y3Rpb24iLCJwdXJwb3NlIjoicHJvamVjdC1hcGkta2V5In0.HTi38PM34tgeQ--ESd3SI8GAsnT4nYbMAl8TXIStU1M';
 const serverUrl = isProduction ? process.env.NEXTAUTH_URL || "https://my-test-app-z9ls.onrender.com" : "http://localhost:3000";
 
 const client = new GraphQLClient(apiUrl);
@@ -79,6 +89,11 @@ export const createNewProject = async (form: ProjectForm, creatorId: string, tok
 export const fetchAllProjects = async (category?: string, endcursor?: string) => {
     client.setHeader('x-api-key', apiKey);
     return makeGraphQLRequest(projectsQuery, { category, endcursor });
+}
+
+export const fetchAllProjectsWithoutCategory = async () => {
+    client.setHeader('x-api-key', apiKey);
+    return makeGraphQLRequest(fetcjAllProjects);
 }
 
 export const getProjectDetails = async (id: string) => {
