@@ -37,6 +37,7 @@ const ProfilePage = ({ user }: Props) => (
                     width={739}
                     height={554}
                     className='rounded-xl object-contain'
+                    priority={true}
                 />
             ) : (
                 <Image
@@ -45,6 +46,7 @@ const ProfilePage = ({ user }: Props) => (
                     height={554}
                     alt="project image"
                     className='rounded-xl'
+                    priority={true}
                 />
             )}
        </section>
