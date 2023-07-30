@@ -2,7 +2,7 @@ import { ProjectInterface } from '@/common.types';
 import Categories from '@/components/Categories';
 import LoadMore from '@/components/LoadMore';
 import ProjectCard from '@/components/ProjectCard';
-import { fetchAllProjects, fetchAllProjectsWithoutCategory } from '@/lib/actions';
+import { fetchAllProjects } from '@/lib/actions';
 import React from 'react';
 
 type ProjectSearch = {

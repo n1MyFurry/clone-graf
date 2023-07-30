@@ -31,7 +31,7 @@ const s = 'c3MVoUhPNhcIkQsibe9z08PRmLG6TnVyJBjS81u80IM=';
 
 const jwt = auth.JWT({
   issuer: 'grafbase',
-  secret: s,
+  secret: s as string,
 })
 
 export default config({
